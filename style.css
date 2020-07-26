@@ -222,6 +222,7 @@ section.blurb > section.description > a {
   margin-top: 1em;
   padding: 1em;
   color: var(--main-colour);
+  background-color: rgba(0, 0, 0, 0.06);
   text-decoration: none;
 }
 
@@ -272,6 +273,7 @@ footer {
 
 footer > .flex-section {
   min-width: 10em;
+  margin: 1em;
 }
 
 footer > .flex-section > .flex-column {
