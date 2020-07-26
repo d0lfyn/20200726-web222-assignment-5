@@ -1,0 +1,260 @@
+/* Add any CSS you need to this file. */
+:root {
+  --main-colour: black;
+  --contrast-colour: white;
+  --footer-color: rgba(40, 40, 40);
+  --shadow-color: rgba(0, 0, 0, 0.15);
+  --accent-color: #ffa9df;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+header {
+  background-color: var(--main-colour);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  padding: 2em 0 1em 0;
+}
+
+header > * {
+  display: block;
+}
+
+header h1 a {
+  color: var(--contrast-colour);
+  text-decoration: none;
+}
+
+#logo {
+  position: relative;
+  display: inline-block;
+  width: 10em;
+  height: 10em;
+  background: linear-gradient(315deg, transparent, var(--accent-color) 100%);
+  border-radius: 50%;
+  margin-bottom: 1em;
+}
+
+header img {
+  position: absolute;
+  width: 95%;
+  height: 95%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+nav {
+  background-color: var(--main-colour);
+  text-align: center;
+  padding-top: 1.25em;
+  box-shadow: 0 4px 4px 0 var(--shadow-color);
+}
+
+nav > div {
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--accent-color) 100%);
+  margin-top: 1em;
+}
+
+nav > ul {
+  display: inline;
+}
+
+nav > ul > li {
+  list-style-type: none;
+  display: inline;
+  padding: 0 1em;
+  margin: 0.5em 0;
+  border-right: 1px solid var(--main-colour);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+nav > ul > li:last-child {
+  border-right: none;
+}
+
+nav > ul > li > span {
+  color: var(--contrast-colour);
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+nav > ul > li > span:hover {
+  color: var(--accent-color);
+  border-bottom: 1px solid var(--accent-color);
+  transition: color 100ms ease-in;
+}
+
+.active {
+  border-bottom: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+.dropdown-title {
+  display: inline-block;
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.85);
+  z-index: 1;
+  min-width: 100%;
+  list-style-type: none;
+  text-align: left;
+}
+
+.dropdown-content > li {
+  padding: 0.5em 1em;
+  color: var(--main-colour);
+  display: inline-block;
+}
+
+.dropdown-content > li > span {
+  cursor: pointer;
+}
+
+.dropdown-content > li > span:hover {
+  border-bottom: 1px solid var(--main-colour);
+}
+
+.dropdown-title:hover .dropdown-content {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+main > section {
+  text-align: center;
+  margin-top: 2em;
+}
+
+h2 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.flex-section {
+  display: flex;
+  flex-wrap: wrap;
+  flex: 1 1 0;
+  align-content: space-between;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 2em;
+}
+
+.card {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva,
+    Verdana, sans-serif;
+  margin: 1em;
+  width: 250px;
+  min-width: 250px;
+  box-shadow: 1px 1px 1px 0 var(--shadow-color);
+}
+
+.cover-art,
+.photo {
+  width: 100%;
+}
+
+section.blurb {
+  margin: 1em;
+}
+
+section.blurb > section.meta {
+  margin-bottom: 1em;
+}
+
+section.blurb > section.meta > h3 {
+  font-variant: small-caps;
+}
+
+section.blurb > section.meta > p {
+  font-size: 0.8em;
+}
+
+section.blurb > section.description {
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+  border-bottom: 1px solid var(--accent-color);
+}
+
+section.blurb > section.description > a {
+  display: block;
+  margin-top: 1em;
+  padding: 1em;
+  color: var(--main-colour);
+  text-decoration: none;
+}
+
+section.blurb > section.description > a:hover {
+  background-color: var(--accent-color);
+  box-shadow: 1px 1px 1px 0 var(--shadow-color);
+  transition: all 200ms ease-in;
+}
+
+section.blurb > section.category > span::before {
+  content: '#';
+}
+
+section.blurb > section.category > span {
+  font-style: italic;
+  margin-right: 1em;
+}
+
+section.blurb > section.category > span:hover {
+  cursor: pointer;
+  border-bottom: 1px solid var(--main-colour);
+}
+
+#about {
+  margin: 2em;
+  text-align: center;
+}
+
+#about > p {
+  display: inline-block;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva,
+    Verdana, sans-serif;
+  max-width: 40em;
+  margin: 1em;
+}
+
+footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  background-color: var(--footer-color);
+  color: var(--contrast-colour);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 1em;
+}
+
+footer > div {
+  min-width: 10em;
+  margin: 1em;
+}
+
+footer > div > * {
+  display: block;
+}
+
+footer > div > a {
+  color: var(--contrast-colour);
+  text-decoration: none;
+}
+
+footer > div > a > span:hover {
+  border-bottom: 1px solid var(--contrast-colour);
+}
