@@ -17,6 +17,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  position: relative;
 }
 
 header {
@@ -40,7 +41,6 @@ header h1 a {
 }
 
 #logo {
-  position: relative;
   display: inline-block;
   width: 10em;
   height: 10em;
@@ -49,7 +49,13 @@ header h1 a {
   margin-bottom: 1em;
 }
 
-header img {
+header > #logo > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+header > #logo > a > img {
   position: absolute;
   width: 95%;
   height: 95%;
@@ -80,7 +86,7 @@ nav > ul {
 
 nav > ul > li {
   list-style-type: none;
-  display: inline;
+  display: inline-block;
   padding: 0 1em;
   margin: 0.5em 0;
   border-right: 1px solid var(--main-colour);
@@ -112,7 +118,6 @@ nav > ul > li > span:hover {
 
 .dropdown-title {
   display: inline-block;
-  position: relative;
 }
 
 .dropdown-content {
@@ -120,7 +125,7 @@ nav > ul > li > span:hover {
   position: absolute;
   background-color: rgba(255, 255, 255, 0.85);
   z-index: 1;
-  min-width: 100%;
+  min-width: fit-content;
   list-style-type: none;
   text-align: left;
 }
@@ -142,11 +147,17 @@ nav > ul > li > span:hover {
 }
 
 .dropdown-title:hover .dropdown-content {
+  width: fit-content;
+  height: fit-content;
   display: block;
 }
 
 .hidden {
   display: none;
+}
+
+main {
+  overflow-x: hidden;
 }
 
 main > section {
@@ -174,8 +185,7 @@ main > section > h2 {
 .card {
   font-family: var(--plain-font);
   margin: 1em;
-  min-width: var(--min-width);
-  max-width: var(--min-width);
+  width: var(--min-width);
   box-shadow: 1px 1px 1px 0 var(--shadow-color);
 }
 
@@ -260,36 +270,31 @@ footer {
   width: 100%;
 }
 
-footer > .grid-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+footer > .flex-section {
+  min-width: 10em;
 }
 
-footer > .grid-section > .grid-column {
+footer > .flex-section > .flex-column {
   margin: 1em;
+  text-align: center;
+  min-width: 10em;
+  max-width: 10em;
+  width: 10em;
 }
 
-footer > .grid-section > .grid-column > * {
+footer > .flex-section > .flex-column > * {
   display: block;
 }
 
-footer > .grid-section > .grid-column:first-child {
-  text-align: right;
-}
-
-footer > .grid-section > .grid-column:last-child {
-  text-align: left;
-}
-
-footer > a, footer > .grid-section > .grid-column > * {
+footer > a, footer > .flex-section > .flex-column > * {
   padding: 0.3em 0;
 }
 
-footer > a, footer > .grid-section > .grid-column > a {
+footer > a, footer > .flex-section > .flex-column > a {
   color: var(--contrast-colour);
   text-decoration: none;
 }
 
-footer > a > span:hover, footer > .grid-section > .grid-column > a > span:hover {
+footer > a > span:hover, footer > .flex-section > .flex-column > a > span:hover {
   border-bottom: 1px solid var(--contrast-colour);
 }
