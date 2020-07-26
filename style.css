@@ -281,6 +281,10 @@ footer > .grid-section > .grid-column:last-child {
   text-align: left;
 }
 
+footer > .grid-section > .grid-column > * {
+  padding: 0.3em 0;
+}
+
 footer > .grid-section > .grid-column > a {
   color: var(--contrast-colour);
   text-decoration: none;
