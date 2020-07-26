@@ -5,6 +5,9 @@
   --footer-color: rgba(40, 40, 40);
   --shadow-color: rgba(0, 0, 0, 0.15);
   --accent-color: #ffa9df;
+  --min-width: 250px;
+  --max-width: 1000px;
+  font-size: 12pt;
 }
 
 * {
@@ -22,6 +25,10 @@ header {
 
 header > * {
   display: block;
+}
+
+h1 {
+  font-size: 30pt;
 }
 
 header h1 a {
@@ -85,6 +92,7 @@ nav > ul > li > span {
   color: var(--contrast-colour);
   padding: 0.5em;
   cursor: pointer;
+  font-size: 16pt;
 }
 
 nav > ul > li > span:hover {
@@ -122,6 +130,8 @@ nav > ul > li > span:hover {
 
 .dropdown-content > li > span {
   cursor: pointer;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 14pt;
 }
 
 .dropdown-content > li > span:hover {
@@ -141,17 +151,20 @@ main > section {
   margin-top: 2em;
 }
 
-h2 {
+main > section > h2 {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20pt;
 }
 
 .flex-section {
-  display: flex;
+  display: inline-flex;
+  min-width: var(--min-width);
+  max-width: var(--max-width);
   flex-wrap: wrap;
   flex: 1 1 0;
   align-content: space-between;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   margin: 2em;
 }
 
@@ -159,8 +172,8 @@ h2 {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva,
     Verdana, sans-serif;
   margin: 1em;
-  width: 250px;
-  min-width: 250px;
+  min-width: var(--min-width);
+  max-width: var(--min-width);
   box-shadow: 1px 1px 1px 0 var(--shadow-color);
 }
 
@@ -179,6 +192,7 @@ section.blurb > section.meta {
 
 section.blurb > section.meta > h3 {
   font-variant: small-caps;
+  font-size: 16pt;
 }
 
 section.blurb > section.meta > p {
@@ -209,9 +223,13 @@ section.blurb > section.category > span::before {
   content: '#';
 }
 
+section.blurb > section.category > span::after {
+  content: ' ';
+}
+
 section.blurb > section.category > span {
   font-style: italic;
-  margin-right: 1em;
+  margin-right: 0.5em;
 }
 
 section.blurb > section.category > span:hover {
@@ -233,28 +251,40 @@ section.blurb > section.category > span:hover {
 }
 
 footer {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  text-align: center;
   background-color: var(--footer-color);
   color: var(--contrast-colour);
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   padding: 1em;
+  width: 100%;
 }
 
-footer > div {
-  min-width: 10em;
+footer > .grid-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+}
+
+footer > .grid-section > .grid-column {
   margin: 1em;
 }
 
-footer > div > * {
+footer > .grid-section > .grid-column > * {
   display: block;
 }
 
-footer > div > a {
+footer > .grid-section > .grid-column:first-child {
+  text-align: right;
+}
+
+footer > .grid-section > .grid-column:last-child {
+  text-align: left;
+}
+
+footer > .grid-section > .grid-column > a {
   color: var(--contrast-colour);
   text-decoration: none;
 }
 
-footer > div > a > span:hover {
+footer > .grid-section > .grid-column > a > span:hover {
   border-bottom: 1px solid var(--contrast-colour);
 }
