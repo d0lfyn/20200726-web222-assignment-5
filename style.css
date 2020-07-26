@@ -267,7 +267,7 @@ footer {
   background-color: var(--footer-color);
   color: var(--contrast-colour);
   font-family: var(--sub-font);
-  padding: 1em;
+  padding: 2em;
   width: 100%;
 }
 
