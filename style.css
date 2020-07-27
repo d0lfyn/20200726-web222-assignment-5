@@ -94,7 +94,7 @@ nav > ul {
 nav > ul > li {
   list-style-type: none;
   display: inline-block;
-  padding: 0 1em;
+  padding: 0.5em 1.5em;
   margin: 0.5em 0;
   border-right: 1px solid var(--main-colour);
   font-family: var(--sub-font);
@@ -106,7 +106,6 @@ nav > ul > li:last-child {
 
 nav > ul > li > span {
   color: var(--contrast-colour);
-  padding: 0.5em;
   cursor: pointer;
   font-size: 16pt;
 }
@@ -130,7 +129,8 @@ nav > ul > li > span:hover {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(3px);
   z-index: 1;
   min-width: fit-content;
   list-style-type: none;
