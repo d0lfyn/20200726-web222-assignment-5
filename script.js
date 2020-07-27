@@ -1,4 +1,3 @@
-/* Add any JavaScript you need to this file. */
 const MusicCollection = (pLink, pCoverArt, pTitle, pRelease, pDescription, pTags) => {
   return {
     link: pLink,
@@ -137,117 +136,10 @@ const toggleSpan = span => {
   span.classList.add('active');
 };
 
-const createSectionToggler = (span, section) => {
-  return () => {
-    toggleSpan(span);
-
-    const sections = document.querySelectorAll('main > section');
-    sections.forEach(section => section.classList.add('hidden'));
-
-    section.classList.remove('hidden');
-
-    const cards = section.querySelectorAll('.card');
-    cards.forEach(card => card.classList.remove('hidden'));
-  };
-};
-
-const createTagToggler = (tag, span, section) => {
-  return () => {
-    toggleSpan(span);
-
-    const sections = document.querySelectorAll('main > section');
-    sections.forEach(section => section.classList.add('hidden'));
-
-    section.classList.remove('hidden');
-
-    const cards = section.querySelectorAll('.card');
-    cards.forEach(card => {
-      if (card.classList.contains(tag)) card.classList.remove('hidden');
-      else card.classList.add('hidden');
-    });
-  };
-};
-
-const refreshPage = () => {
-  const sections = document.querySelectorAll('main > section');
-  sections.forEach(section => section.classList.remove('hidden'));
-
-  const navItems = document.querySelectorAll('nav > ul > li');
-  navItems.forEach(navItem => navItem.querySelector('span').classList.remove('active'));
-  const homeLi = navItems[0];
-  const homeSpan = homeLi.querySelector('span');
-  homeSpan.classList.add('active');
-
-  for (let i = 0; i < 2; i++) {
-    const cards = sections[i].querySelectorAll('.card');
-    cards.forEach(card => card.classList.remove('hidden'));
-  }
-};
-
-window.onload = () => {
-  const sections = document.querySelectorAll('main > section');
-  const musicSection = sections[0];
-  const photographySection = sections[1];
-  const aboutSection = sections[2];
-
-  const headerAs = document.querySelectorAll('header a');
-  headerAs.forEach(headerA => headerA.addEventListener('click', refreshPage));
-
-  const navItems = document.querySelectorAll('nav > ul > li');
-  const homeLi = navItems[0];
-  const homeSpan = homeLi.querySelector('span');
-  homeSpan.classList.add('active');
-  homeSpan.addEventListener('click', refreshPage);
-
-  const musicLi = navItems[1];
-  const musicSpan = musicLi.querySelector('span');
-  musicSpan.addEventListener('click', createSectionToggler(musicSpan, musicSection));
-
-  const musicUl = musicLi.querySelector('ul');
-
-  const musicClassicalLi = musicUl.children[0];
-  const musicClassicalSpan = musicClassicalLi.children[0];
-  musicClassicalSpan.addEventListener(
-    'click',
-    createTagToggler('classical', musicSpan, musicSection)
-  );
-
-  const musicElectronicLi = musicUl.children[1];
-  const musicElectronicSpan = musicElectronicLi.children[0];
-  musicElectronicSpan.addEventListener(
-    'click',
-    createTagToggler('electronic', musicSpan, musicSection)
-  );
-
-  const photographyLi = navItems[2];
-  const photographySpan = photographyLi.querySelector('span');
-  photographySpan.addEventListener(
-    'click',
-    createSectionToggler(photographySpan, photographySection)
-  );
-
-  const photographyUl = photographyLi.querySelector('ul');
-
-  const photographyAbstractLi = photographyUl.children[0];
-  const photographyAbstractSpan = photographyAbstractLi.children[0];
-  photographyAbstractSpan.addEventListener(
-    'click',
-    createTagToggler('abstract', photographySpan, photographySection)
-  );
-
-  const photographyNatureLi = photographyUl.children[1];
-  const photographyNatureSpan = photographyNatureLi.children[0];
-  photographyNatureSpan.addEventListener(
-    'click',
-    createTagToggler('nature', photographySpan, photographySection)
-  );
-
-  const aboutLi = navItems[3];
-  const aboutSpan = aboutLi.querySelector('span');
-  aboutSpan.addEventListener('click', createSectionToggler(aboutSpan, aboutSection));
-
-  const musicSectionFlex = musicSection.getElementsByClassName('flex-section')[0];
-  musicCollections.forEach(collection => {
+const createMusicSectionFlex = pMusicCollections => {
+  const musicSectionFlex = document.createElement('div');
+  musicSectionFlex.classList.add('flex-div');
+  pMusicCollections.forEach(collection => {
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('card');
 
@@ -285,7 +177,7 @@ window.onload = () => {
       const tagSpan = document.createElement('span');
       cardDiv.classList.add(tag);
       tagSpan.appendChild(document.createTextNode(tag));
-      tagSpan.addEventListener('click', createTagToggler(tag, musicSpan, musicSection));
+      tagSpan.addEventListener('click', createMusicTagToggler(tag));
       category.appendChild(tagSpan);
     });
 
@@ -295,8 +187,13 @@ window.onload = () => {
     musicSectionFlex.appendChild(cardDiv);
   });
 
-  const photographySectionFlex = photographySection.getElementsByClassName('flex-section')[0];
-  photos.forEach(photo => {
+  return musicSectionFlex;
+};
+
+const createPhotographySectionFlex = pPhotos => {
+  const photographySectionFlex = document.createElement('div');
+  photographySectionFlex.classList.add('flex-div');
+  pPhotos.forEach(photo => {
     const cardDiv = document.createElement('div');
     cardDiv.classList.add('card');
 
@@ -334,7 +231,7 @@ window.onload = () => {
       const tagSpan = document.createElement('span');
       cardDiv.classList.add(tag);
       tagSpan.appendChild(document.createTextNode(tag));
-      tagSpan.addEventListener('click', createTagToggler(tag, photographySpan, photographySection));
+      tagSpan.addEventListener('click', createPhotographyTagToggler(tag));
       category.appendChild(tagSpan);
     });
 
@@ -343,4 +240,180 @@ window.onload = () => {
     cardDiv.append(link, blurb);
     photographySectionFlex.appendChild(cardDiv);
   });
+
+  return photographySectionFlex;
+};
+
+const clearMusicPhotographySections = () => {
+  const sections = document.querySelectorAll('main > section');
+  for (let i = 0; i < 2; i++) {
+    const flexDiv = sections[i].getElementsByClassName('flex-div')[0];
+    if (flexDiv) flexDiv.remove();
+  }
+};
+
+const createMusicTagToggler = pTag => {
+  return () => {
+    const musicSpan = document.querySelectorAll('nav > ul > li')[1].querySelector('span');
+    toggleSpan(musicSpan);
+
+    const sections = document.querySelectorAll('main > section');
+    sections.forEach(section => section.classList.add('hidden'));
+
+    const musicSection = sections[0];
+    musicSection.classList.remove('hidden');
+
+    clearMusicPhotographySections();
+
+    musicSection.appendChild(
+      createMusicSectionFlex(
+        musicCollections.filter(collection => collection.tags.includes(pTag)),
+        musicSpan,
+        musicSection
+      )
+    );
+  };
+};
+
+const musicSectionToggler = () => {
+  const musicSpan = document.querySelectorAll('nav > ul > li')[1].querySelector('span');
+  toggleSpan(musicSpan);
+
+  const sections = document.querySelectorAll('main > section');
+  sections.forEach(section => section.classList.add('hidden'));
+
+  const musicSection = sections[0];
+  musicSection.classList.remove('hidden');
+
+  clearMusicPhotographySections();
+
+  musicSection.appendChild(createMusicSectionFlex(musicCollections, musicSpan, musicSection));
+};
+
+const createPhotographyTagToggler = pTag => {
+  return () => {
+    const photographySpan = document.querySelectorAll('nav > ul > li')[2].querySelector('span');
+    toggleSpan(photographySpan);
+
+    const sections = document.querySelectorAll('main > section');
+    sections.forEach(section => section.classList.add('hidden'));
+
+    const photographySection = sections[1];
+    photographySection.classList.remove('hidden');
+
+    clearMusicPhotographySections();
+
+    photographySection.appendChild(
+      createPhotographySectionFlex(
+        photos.filter(photo => photo.tags.includes(pTag)),
+        photographySpan,
+        photographySection
+      )
+    );
+  };
+};
+
+const photographySectionToggler = () => {
+  const photographySpan = document.querySelectorAll('nav > ul > li')[2].querySelector('span');
+  toggleSpan(photographySpan);
+
+  const sections = document.querySelectorAll('main > section');
+  sections.forEach(section => section.classList.add('hidden'));
+
+  const photographySection = sections[1];
+  photographySection.classList.remove('hidden');
+
+  clearMusicPhotographySections();
+
+  photographySection.appendChild(
+    createPhotographySectionFlex(photos, photographySpan, photographySection)
+  );
+};
+
+const aboutSectionToggler = () => {
+  const aboutSpan = document.querySelectorAll('nav > ul > li')[3].querySelector('span');
+  toggleSpan(aboutSpan);
+
+  const sections = document.querySelectorAll('main > section');
+  sections.forEach(section => section.classList.add('hidden'));
+
+  const aboutSection = sections[2];
+  aboutSection.classList.remove('hidden');
+
+  clearMusicPhotographySections();
+};
+
+const refreshPage = () => {
+  const sections = document.querySelectorAll('main > section');
+  sections.forEach(section => section.classList.remove('hidden'));
+
+  const navItems = document.querySelectorAll('nav > ul > li');
+  navItems.forEach(navItem => navItem.querySelector('span').classList.remove('active'));
+  const homeLi = navItems[0];
+  const homeSpan = homeLi.querySelector('span');
+  homeSpan.classList.add('active');
+
+  clearMusicPhotographySections();
+
+  const musicSpan = navItems[1].querySelector('span');
+  const musicSection = sections[0];
+  musicSection.appendChild(createMusicSectionFlex(musicCollections, musicSpan, musicSection));
+
+  const photographySpan = navItems[2].querySelector('span');
+  const photographySection = sections[1];
+  photographySection.appendChild(
+    createPhotographySectionFlex(photos, photographySpan, photographySection)
+  );
+};
+
+window.onload = () => {
+  const sections = document.querySelectorAll('main > section');
+  const musicSection = sections[0];
+  const photographySection = sections[1];
+
+  const headerAs = document.querySelectorAll('header a');
+  headerAs.forEach(headerA => headerA.addEventListener('click', refreshPage));
+
+  const navItems = document.querySelectorAll('nav > ul > li');
+  const homeLi = navItems[0];
+  const homeSpan = homeLi.querySelector('span');
+  homeSpan.classList.add('active');
+  homeSpan.addEventListener('click', refreshPage);
+
+  const musicLi = navItems[1];
+  const musicSpan = musicLi.querySelector('span');
+  musicSpan.addEventListener('click', musicSectionToggler);
+
+  const musicUl = musicLi.querySelector('ul');
+
+  const musicClassicalLi = musicUl.children[0];
+  const musicClassicalSpan = musicClassicalLi.children[0];
+  musicClassicalSpan.addEventListener('click', createMusicTagToggler('classical'));
+
+  const musicElectronicLi = musicUl.children[1];
+  const musicElectronicSpan = musicElectronicLi.children[0];
+  musicElectronicSpan.addEventListener('click', createMusicTagToggler('electronic'));
+
+  const photographyLi = navItems[2];
+  const photographySpan = photographyLi.querySelector('span');
+  photographySpan.addEventListener('click', photographySectionToggler);
+
+  const photographyUl = photographyLi.querySelector('ul');
+
+  const photographyAbstractLi = photographyUl.children[0];
+  const photographyAbstractSpan = photographyAbstractLi.children[0];
+  photographyAbstractSpan.addEventListener('click', createPhotographyTagToggler('abstract'));
+
+  const photographyNatureLi = photographyUl.children[1];
+  const photographyNatureSpan = photographyNatureLi.children[0];
+  photographyNatureSpan.addEventListener('click', createPhotographyTagToggler('nature'));
+
+  const aboutLi = navItems[3];
+  const aboutSpan = aboutLi.querySelector('span');
+  aboutSpan.addEventListener('click', aboutSectionToggler);
+
+  musicSection.appendChild(createMusicSectionFlex(musicCollections, musicSpan, musicSection));
+  photographySection.appendChild(
+    createPhotographySectionFlex(photos, photographySpan, photographySection)
+  );
 };

@@ -1,4 +1,3 @@
-/* Add any CSS you need to this file. */
 :root {
   --main-colour: black;
   --contrast-colour: white;
@@ -171,7 +170,7 @@ main > section > h2 {
   font-size: 20pt;
 }
 
-.flex-section {
+.flex-div {
   display: inline-flex;
   min-width: var(--min-width);
   max-width: var(--max-width);
@@ -272,12 +271,12 @@ footer {
   width: 100%;
 }
 
-footer > .flex-section {
+footer > .flex-div {
   min-width: 10em;
   margin: 1em;
 }
 
-footer > .flex-section > .flex-column {
+footer > .flex-div > .flex-column {
   margin: 1em;
   text-align: center;
   min-width: 10em;
@@ -285,22 +284,22 @@ footer > .flex-section > .flex-column {
   width: 10em;
 }
 
-footer > .flex-section > .flex-column > * {
+footer > .flex-div > .flex-column > * {
   display: block;
 }
 
 footer > a,
-footer > .flex-section > .flex-column > * {
+footer > .flex-div > .flex-column > * {
   padding: 0.3em 0;
 }
 
 footer > a,
-footer > .flex-section > .flex-column > a {
+footer > .flex-div > .flex-column > a {
   color: var(--contrast-colour);
   text-decoration: none;
 }
 
 footer > a > span:hover,
-footer > .flex-section > .flex-column > a > span:hover {
+footer > .flex-div > .flex-column > a > span:hover {
   border-bottom: 1px solid var(--contrast-colour);
 }
