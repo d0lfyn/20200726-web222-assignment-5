@@ -1,3 +1,5 @@
+// card objects
+
 const MusicCollection = (pLink, pCoverArt, pTitle, pRelease, pDescription, pTags) => {
   return {
     link: pLink,
@@ -19,6 +21,8 @@ const Photo = (pLink, pPhoto, pTitle, pDate, pDescription, pTags) => {
     tags: pTags
   };
 };
+
+// data
 
 const musicCollections = [
   MusicCollection(
@@ -130,12 +134,14 @@ const photos = [
   )
 ];
 
-const toggleSpan = span => {
+// makes the given menu span active and the others inactive
+const toggleMenuSpan = pMenuSpan => {
   const navItems = document.querySelectorAll('nav > ul > li');
   navItems.forEach(navItem => navItem.querySelector('span').classList.remove('active'));
-  span.classList.add('active');
+  pMenuSpan.classList.add('active');
 };
 
+// creates a flex-div class div containing music cards for the given music collections
 const createMusicSectionFlex = pMusicCollections => {
   const musicSectionFlex = document.createElement('div');
   musicSectionFlex.classList.add('flex-div');
@@ -190,6 +196,7 @@ const createMusicSectionFlex = pMusicCollections => {
   return musicSectionFlex;
 };
 
+// creates a flex-div class div containing photo cards for the given photos
 const createPhotographySectionFlex = pPhotos => {
   const photographySectionFlex = document.createElement('div');
   photographySectionFlex.classList.add('flex-div');
@@ -244,6 +251,7 @@ const createPhotographySectionFlex = pPhotos => {
   return photographySectionFlex;
 };
 
+// removes all cards from the music and photography sections
 const clearMusicPhotographySections = () => {
   const sections = document.querySelectorAll('main > section');
   for (let i = 0; i < 2; i++) {
@@ -252,10 +260,11 @@ const clearMusicPhotographySections = () => {
   }
 };
 
+// returns a toggler for cards with the given music tag
 const createMusicTagToggler = pTag => {
   return () => {
     const musicSpan = document.querySelectorAll('nav > ul > li')[1].querySelector('span');
-    toggleSpan(musicSpan);
+    toggleMenuSpan(musicSpan);
 
     const sections = document.querySelectorAll('main > section');
     sections.forEach(section => section.classList.add('hidden'));
@@ -275,9 +284,10 @@ const createMusicTagToggler = pTag => {
   };
 };
 
+// clears and hides all sections except for the music section
 const musicSectionToggler = () => {
   const musicSpan = document.querySelectorAll('nav > ul > li')[1].querySelector('span');
-  toggleSpan(musicSpan);
+  toggleMenuSpan(musicSpan);
 
   const sections = document.querySelectorAll('main > section');
   sections.forEach(section => section.classList.add('hidden'));
@@ -290,10 +300,11 @@ const musicSectionToggler = () => {
   musicSection.appendChild(createMusicSectionFlex(musicCollections, musicSpan, musicSection));
 };
 
+// returns a toggler for cards with the given photography tag
 const createPhotographyTagToggler = pTag => {
   return () => {
     const photographySpan = document.querySelectorAll('nav > ul > li')[2].querySelector('span');
-    toggleSpan(photographySpan);
+    toggleMenuSpan(photographySpan);
 
     const sections = document.querySelectorAll('main > section');
     sections.forEach(section => section.classList.add('hidden'));
@@ -313,9 +324,10 @@ const createPhotographyTagToggler = pTag => {
   };
 };
 
+// clears and hides all sections except for the photography section
 const photographySectionToggler = () => {
   const photographySpan = document.querySelectorAll('nav > ul > li')[2].querySelector('span');
-  toggleSpan(photographySpan);
+  toggleMenuSpan(photographySpan);
 
   const sections = document.querySelectorAll('main > section');
   sections.forEach(section => section.classList.add('hidden'));
@@ -330,9 +342,10 @@ const photographySectionToggler = () => {
   );
 };
 
+// clears and hides all sections except for the about section
 const aboutSectionToggler = () => {
   const aboutSpan = document.querySelectorAll('nav > ul > li')[3].querySelector('span');
-  toggleSpan(aboutSpan);
+  toggleMenuSpan(aboutSpan);
 
   const sections = document.querySelectorAll('main > section');
   sections.forEach(section => section.classList.add('hidden'));
@@ -343,6 +356,7 @@ const aboutSectionToggler = () => {
   clearMusicPhotographySections();
 };
 
+// shows all sections and cards
 const refreshPage = () => {
   const sections = document.querySelectorAll('main > section');
   sections.forEach(section => section.classList.remove('hidden'));
