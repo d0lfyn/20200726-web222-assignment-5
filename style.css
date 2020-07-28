@@ -6,17 +6,19 @@
 */
 
 :root {
-  --main-colour: black;
+  --accent-colour: #ffa9df;
+  --button-colour: rgba(0, 0, 0, 0.06);
   --contrast-colour: white;
-  --footer-color: rgba(40, 40, 40);
-  --shadow-color: rgba(0, 0, 0, 0.15);
-  --accent-color: #ffa9df;
+  --footer-colour: rgba(40, 40, 40);
+  --main-colour: black;
+  --shadow-colour: rgba(0, 0, 0, 0.15);
   --min-width: 250px;
   --max-width: 1000px;
-  --title-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --sub-font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   --plain-font: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva,
     Verdana, sans-serif;
+  --sub-font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  --title-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --button-transition: all 200ms ease-in;
   font-size: 12pt;
 }
 
@@ -51,7 +53,7 @@ header h1 a {
   display: inline-block;
   width: 10em;
   height: 10em;
-  background: linear-gradient(315deg, transparent, var(--accent-color) 100%);
+  background: linear-gradient(315deg, transparent, var(--accent-colour) 100%);
   border-radius: 50%;
   margin-bottom: 1em;
 }
@@ -77,13 +79,13 @@ nav {
   background-color: var(--main-colour);
   text-align: center;
   padding-top: 1.25em;
-  box-shadow: 0 4px 4px 0 var(--shadow-color);
+  box-shadow: 0 4px 4px 0 var(--shadow-colour);
 }
 
 nav > div {
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, transparent, var(--accent-color) 100%);
+  background: linear-gradient(90deg, transparent, var(--accent-colour) 100%);
   margin-top: 1em;
 }
 
@@ -111,14 +113,14 @@ nav > ul > li > span {
 }
 
 nav > ul > li > span:hover {
-  color: var(--accent-color);
-  border-bottom: 1px solid var(--accent-color);
+  color: var(--accent-colour);
+  border-bottom: 1px solid var(--accent-colour);
   transition: color 100ms ease-in;
 }
 
 .active {
-  border-bottom: 1px solid var(--accent-color);
-  color: var(--accent-color);
+  border-bottom: 1px solid var(--accent-colour);
+  color: var(--accent-colour);
   font-weight: bold;
 }
 
@@ -165,16 +167,21 @@ nav > ul > li > span:hover {
 
 main {
   overflow-x: hidden;
+  text-align: center;
 }
 
 main > section {
+  display: inline-block;
   text-align: center;
-  margin-top: 2em;
+  margin: 2em;
+  min-width: var(--min-width);
+  max-width: var(--max-width);
 }
 
 main > section > h2 {
   font-family: var(--sub-font);
   font-size: 20pt;
+  margin: 1em;
 }
 
 .flex-div {
@@ -193,7 +200,7 @@ main > section > h2 {
   font-family: var(--plain-font);
   margin: 1em;
   width: var(--min-width);
-  box-shadow: 1px 1px 1px 0 var(--shadow-color);
+  box-shadow: 1px 1px 1px 0 var(--shadow-colour);
 }
 
 .cover-art,
@@ -221,7 +228,7 @@ section.blurb > section.meta > p {
 section.blurb > section.description {
   padding-bottom: 1em;
   margin-bottom: 1em;
-  border-bottom: 1px solid var(--accent-color);
+  border-bottom: 1px solid var(--accent-colour);
 }
 
 section.blurb > section.description > a {
@@ -229,14 +236,14 @@ section.blurb > section.description > a {
   margin-top: 1em;
   padding: 1em;
   color: var(--main-colour);
-  background-color: rgba(0, 0, 0, 0.06);
+  background-color: var(--button-colour);
   text-decoration: none;
 }
 
 section.blurb > section.description > a:hover {
-  background-color: var(--accent-color);
-  box-shadow: 1px 1px 1px 0 var(--shadow-color);
-  transition: all 200ms ease-in;
+  background-color: var(--accent-colour);
+  box-shadow: 1px 1px 1px 0 var(--shadow-colour);
+  transition: var(--button-transition);
 }
 
 section.blurb > section.category > span::before {
@@ -257,21 +264,58 @@ section.blurb > section.category > span:hover {
   border-bottom: 1px solid var(--main-colour);
 }
 
-#about {
-  margin: 2em;
-  text-align: center;
-}
-
-#about > p {
+main > section#about > p,
+main > section#contact > p {
   display: inline-block;
   font-family: var(--plain-font);
   max-width: 40em;
-  margin: 1em;
+}
+
+main > section#contact > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main > section#contact > form > input {
+  margin: 0.5em;
+  padding: 0.5em 1em;
+  border: none;
+}
+
+main > section#contact > form > input:focus {
+  outline: none;
+}
+
+main > section#contact > form > input.text-field {
+  border-bottom: 1px solid var(--main-colour);
+  width: 90%;
+}
+
+main > section#contact > form > input.text-field:focus {
+  border-bottom: 1px solid var(--accent-colour);
+  transition: var(--button-transition);
+}
+
+main > section#contact > form > input.button {
+  text-transform: uppercase;
+  background-color: var(--button-colour);
+  width: fit-content;
+}
+
+main > section#contact > form > input.button:focus {
+  border: 1px solid var(--accent-colour);
+}
+
+main > section#contact > form > input.button:hover {
+  background-color: var(--accent-colour);
+  box-shadow: 1px 1px 1px 0 var(--shadow-colour);
+  transition: var(--button-transition);
 }
 
 footer {
   text-align: center;
-  background-color: var(--footer-color);
+  background-color: var(--footer-colour);
   color: var(--contrast-colour);
   font-family: var(--sub-font);
   padding: 2em;

@@ -363,6 +363,20 @@ const aboutSectionToggler = () => {
   clearMusicPhotographySections();
 };
 
+// clears and hides all sections except for the contact section
+const contactSectionToggler = () => {
+  const contactSpan = document.querySelectorAll('nav > ul > li')[4].querySelector('span');
+  toggleMenuSpan(contactSpan);
+
+  const sections = document.querySelectorAll('main > section');
+  sections.forEach(section => section.classList.add('hidden'));
+
+  const contactSection = sections[3];
+  contactSection.classList.remove('hidden');
+
+  clearMusicPhotographySections();
+};
+
 // shows all sections and cards
 const refreshPage = () => {
   const sections = document.querySelectorAll('main > section');
@@ -432,6 +446,10 @@ window.onload = () => {
   const aboutLi = navItems[3];
   const aboutSpan = aboutLi.querySelector('span');
   aboutSpan.addEventListener('click', aboutSectionToggler);
+
+  const contactLi = navItems[4];
+  const contactSpan = contactLi.querySelector('span');
+  contactSpan.addEventListener('click', contactSectionToggler);
 
   musicSection.appendChild(createMusicSectionFlex(musicCollections, musicSpan, musicSection));
   photographySection.appendChild(
