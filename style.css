@@ -166,12 +166,13 @@ nav > ul > li > span:hover {
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow-x: hidden;
-  text-align: center;
 }
 
 main > section {
-  display: inline-block;
   text-align: center;
   margin: 2em;
   min-width: var(--min-width);
