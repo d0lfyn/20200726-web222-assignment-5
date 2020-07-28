@@ -349,38 +349,26 @@ const photographySectionToggler = () => {
   );
 };
 
-// clears and hides all sections except for the about section
-const aboutSectionToggler = () => {
-  const aboutSpan = document.querySelectorAll('nav > ul > li')[3].querySelector('span');
-  toggleMenuSpan(aboutSpan);
+// creates a toggler that clears and hides all sections except for the given section
+const createSectionToggler = (pMenuSpan, pSection) => {
+  return () => {
+    toggleMenuSpan(pMenuSpan);
 
-  const sections = document.querySelectorAll('main > section');
-  sections.forEach(section => section.classList.add('hidden'));
+    const sections = document.querySelectorAll('main > section');
+    sections.forEach(section => section.classList.add('hidden'));
 
-  const aboutSection = sections[2];
-  aboutSection.classList.remove('hidden');
+    pSection.classList.remove('hidden');
 
-  clearMusicPhotographySections();
-};
-
-// clears and hides all sections except for the contact section
-const contactSectionToggler = () => {
-  const contactSpan = document.querySelectorAll('nav > ul > li')[4].querySelector('span');
-  toggleMenuSpan(contactSpan);
-
-  const sections = document.querySelectorAll('main > section');
-  sections.forEach(section => section.classList.add('hidden'));
-
-  const contactSection = sections[3];
-  contactSection.classList.remove('hidden');
-
-  clearMusicPhotographySections();
+    clearMusicPhotographySections();
+  };
 };
 
 // shows all sections and cards
 const refreshPage = () => {
   const sections = document.querySelectorAll('main > section');
   sections.forEach(section => section.classList.remove('hidden'));
+  sections[2].classList.add('hidden');
+  sections[3].classList.add('hidden');
 
   const navItems = document.querySelectorAll('nav > ul > li');
   navItems.forEach(navItem => navItem.querySelector('span').classList.remove('active'));
@@ -405,6 +393,8 @@ window.onload = () => {
   const sections = document.querySelectorAll('main > section');
   const musicSection = sections[0];
   const photographySection = sections[1];
+  const aboutSection = sections[2];
+  const contactSection = sections[3];
 
   const headerAs = document.querySelectorAll('header a');
   headerAs.forEach(headerA => headerA.addEventListener('click', refreshPage));
@@ -445,14 +435,16 @@ window.onload = () => {
 
   const aboutLi = navItems[3];
   const aboutSpan = aboutLi.querySelector('span');
-  aboutSpan.addEventListener('click', aboutSectionToggler);
+  aboutSpan.addEventListener('click', createSectionToggler(aboutSpan, aboutSection));
 
   const contactLi = navItems[4];
   const contactSpan = contactLi.querySelector('span');
-  contactSpan.addEventListener('click', contactSectionToggler);
+  contactSpan.addEventListener('click', createSectionToggler(contactSpan, contactSection));
 
   musicSection.appendChild(createMusicSectionFlex(musicCollections, musicSpan, musicSection));
   photographySection.appendChild(
     createPhotographySectionFlex(photos, photographySpan, photographySection)
   );
+  aboutSection.classList.add('hidden');
+  contactSection.classList.add('hidden');
 };
