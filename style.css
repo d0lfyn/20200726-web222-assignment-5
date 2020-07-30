@@ -82,11 +82,18 @@ nav {
   box-shadow: 0 4px 4px 0 var(--shadow-colour);
 }
 
-nav > div {
+div.gradient-trim {
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, transparent, var(--accent-colour) 100%);
   margin-top: 1em;
+}
+
+nav > div.gradient-trim {
+  background: linear-gradient(90deg, var(--main-colour), var(--accent-colour) 100%);
+}
+
+body > div.gradient-trim {
+  background: linear-gradient(270deg, var(--footer-colour), var(--accent-colour) 100%);
 }
 
 nav > ul {
