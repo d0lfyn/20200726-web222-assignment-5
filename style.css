@@ -19,6 +19,7 @@
   --sub-font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   --title-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --button-transition: all 200ms ease-in;
+  --octagon-transition: all 400ms ease-in;
   font-size: 12pt;
 }
 
@@ -29,7 +30,12 @@
   position: relative;
 }
 
+body {
+  width: 100%;
+}
+
 header {
+  width: 100%;
   background-color: var(--main-colour);
   font-family: var(--title-font);
   text-align: center;
@@ -44,12 +50,12 @@ h1 {
   font-size: 30pt;
 }
 
-header h1 a {
+header > h1 > a {
   color: var(--contrast-colour);
   text-decoration: none;
 }
 
-#logo {
+header > #logo {
   display: inline-block;
   width: 10em;
   height: 10em;
@@ -76,6 +82,7 @@ header > #logo > a > img {
 }
 
 nav {
+  width: 100%;
   background-color: var(--main-colour);
   text-align: center;
   padding-top: 1.25em;
@@ -90,10 +97,6 @@ div.gradient-trim {
 
 nav > div.gradient-trim {
   background: linear-gradient(90deg, var(--main-colour), var(--accent-colour) 100%);
-}
-
-body > div.gradient-trim {
-  background: linear-gradient(270deg, var(--footer-colour), var(--accent-colour) 100%);
 }
 
 nav > ul {
@@ -111,6 +114,36 @@ nav > ul > li {
 
 nav > ul > li:last-child {
   border-right: none;
+}
+
+nav > ul > li::before {
+  position: absolute;
+  transform: translateX(-250%) translateY(-10%);
+  content: ' ';
+  width: 0;
+  height: 0.75em;
+  border: 0.75em solid transparent;
+}
+
+nav > ul > li::after {
+  position: absolute;
+  transform: translateX(150%) translateY(-10%);
+  content: ' ';
+  width: 0;
+  height: 0.75em;
+  border: 0.75em solid transparent;
+}
+
+nav > ul > li:hover::before {
+  transform: translateX(-150%) translateY(-10%);
+  border-right: 0.75em solid var(--accent-colour);
+  transition: var(--octagon-transition);
+}
+
+nav > ul > li:hover::after {
+  transform: translateX(50%) translateY(-10%);
+  border-left: 0.75em solid var(--accent-colour);
+  transition: var(--octagon-transition);
 }
 
 nav > ul > li > span {
@@ -149,7 +182,7 @@ nav > ul > li > span:hover {
 .dropdown-content > li {
   padding: 0.5em 1em;
   color: var(--main-colour);
-  display: inline-block;
+  display: block;
 }
 
 .dropdown-content > li > span {
@@ -254,6 +287,36 @@ section.blurb > section.description > a:hover {
   transition: var(--button-transition);
 }
 
+section.blurb > section.description > a::before {
+  position: absolute;
+  transform: translateX(-250%) translateY(-25%);
+  content: ' ';
+  width: 0;
+  height: 0.75em;
+  border: 0.75em solid transparent;
+}
+
+section.blurb > section.description > a::after {
+  position: absolute;
+  transform: translateX(150%) translateY(-25%);
+  content: ' ';
+  width: 0;
+  height: 0.75em;
+  border: 0.75em solid transparent;
+}
+
+section.blurb > section.description > a:hover::before {
+  transform: translateX(-150%) translateY(-25%);
+  border-right: 0.75em solid var(--main-colour);
+  transition: var(--octagon-transition);
+}
+
+section.blurb > section.description > a:hover::after {
+  transform: translateX(50%) translateY(-25%);
+  border-left: 0.75em solid var(--main-colour);
+  transition: var(--octagon-transition);
+}
+
 section.blurb > section.category > span::before {
   content: '#';
 }
@@ -326,6 +389,10 @@ main > section#contact > form > input.button:hover {
   background-color: var(--accent-colour);
   box-shadow: 1px 1px 1px 0 var(--shadow-colour);
   transition: var(--button-transition);
+}
+
+body > div.gradient-trim {
+  background: linear-gradient(270deg, var(--footer-colour), var(--accent-colour) 100%);
 }
 
 footer {
