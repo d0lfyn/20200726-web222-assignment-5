@@ -7,6 +7,7 @@
 
 :root {
   --accent-colour: #ffa9df;
+  --accent-2-colour: #ff86d3;
   --button-colour: rgba(0, 0, 0, 0.06);
   --contrast-colour: white;
   --footer-colour: rgba(40, 40, 40);
@@ -40,6 +41,7 @@ header {
   font-family: var(--title-font);
   text-align: center;
   padding: 2em 0 1em 0;
+  overflow: hidden;
 }
 
 header > * {
@@ -59,11 +61,16 @@ header > h1 > a {
   text-decoration: none;
 }
 
+header > h1 > a:hover {
+  color: var(--accent-colour);
+  transition: var(--button-transition);
+}
+
 header > #logo {
   display: inline-block;
   width: 10em;
   height: 10em;
-  background: linear-gradient(315deg, transparent, var(--accent-colour) 100%);
+  background: linear-gradient(315deg, transparent 0%, var(--accent-colour) 100%);
   border-radius: 50%;
   margin-bottom: 1em;
 }
@@ -72,6 +79,36 @@ header > #logo > a {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+header > #logo > a::before {
+  position: absolute;
+  transform: translateX(-200%) translateY(-50%);
+  content: ' ';
+  width: 0;
+  height: 3.5em;
+  border: 3.5em solid transparent;
+}
+
+header > #logo > a::after {
+  position: absolute;
+  transform: translateX(100%) translateY(50%);
+  content: ' ';
+  width: 0;
+  height: 3.5em;
+  border: 3.5em solid transparent;
+}
+
+header > #logo > a:hover::before {
+  transform: translateX(-200%);
+  border-right: 3.5em solid var(--accent-colour);
+  transition: var(--octagon-transition);
+}
+
+header > #logo > a:hover::after {
+  transform: translateX(100%);
+  border-left: 3.5em solid var(--accent-colour);
+  transition: var(--octagon-transition);
 }
 
 header > #logo > a > img {
@@ -100,7 +137,7 @@ div.gradient-trim {
 }
 
 nav > div.gradient-trim {
-  background: linear-gradient(90deg, var(--main-colour), var(--accent-colour) 100%);
+  background: linear-gradient(90deg, var(--main-colour) 0%, var(--accent-colour) 100%);
 }
 
 nav > ul {
@@ -278,11 +315,11 @@ section.blurb > section.description {
 
 section.blurb > section.description > a {
   display: block;
-  margin-top: 1em;
+  margin: 1em;
   padding: 1em;
+  text-decoration: none;
   color: var(--main-colour);
   background-color: var(--button-colour);
-  text-decoration: none;
 }
 
 section.blurb > section.description > a:hover {
@@ -291,34 +328,55 @@ section.blurb > section.description > a:hover {
   transition: var(--button-transition);
 }
 
-section.blurb > section.description > a::before {
-  position: absolute;
-  transform: translateX(-250%) translateY(-25%);
-  content: ' ';
-  width: 0;
-  height: 0.75em;
-  border: 0.75em solid transparent;
-}
+@media (hover: hover) and (pointer: fine) {
+  section.blurb > section.description > a {
+    display: block;
+    margin: 0em;
+    padding: 2em;
+    color: transparent;
+    background-color: transparent;
+    text-decoration: none;
+  }
 
-section.blurb > section.description > a::after {
-  position: absolute;
-  transform: translateX(150%) translateY(-25%);
-  content: ' ';
-  width: 0;
-  height: 0.75em;
-  border: 0.75em solid transparent;
-}
+  section.blurb > section.description > a::before {
+    position: absolute;
+    transform: translateX(100%) translateY(-25%);
+    color: var(--contrast-colour);
+    content: ' ';
+    width: 0;
+    height: 0.75em;
+    border: 0.75em solid transparent;
+    border-right: 0.75em solid var(--accent-2-colour);
+  }
 
-section.blurb > section.description > a:hover::before {
-  transform: translateX(-150%) translateY(-25%);
-  border-right: 0.75em solid var(--main-colour);
-  transition: var(--octagon-transition);
-}
+  section.blurb > section.description > a::after {
+    position: absolute;
+    transform: translateX(-200%) translateY(-25%);
+    content: ' ';
+    width: 0;
+    height: 0.75em;
+    border: 0.75em solid transparent;
+    border-left: 0.75em solid var(--accent-2-colour);
+  }
 
-section.blurb > section.description > a:hover::after {
-  transform: translateX(50%) translateY(-25%);
-  border-left: 0.75em solid var(--main-colour);
-  transition: var(--octagon-transition);
+  section.blurb > section.description > a:hover {
+    color: var(--main-colour);
+    background-color: transparent;
+    box-shadow: none;
+    transition: all 500ms ease-in 200ms;
+  }
+
+  section.blurb > section.description > a:hover::before {
+    transform: translateX(-150%) translateY(-25%);
+    border-right: 0.75em solid var(--accent-2-colour);
+    transition: var(--octagon-transition);
+  }
+
+  section.blurb > section.description > a:hover::after {
+    transform: translateX(50%) translateY(-25%);
+    border-left: 0.75em solid var(--accent-2-colour);
+    transition: var(--octagon-transition);
+  }
 }
 
 section.blurb > section.category > span::before {
@@ -396,7 +454,7 @@ main > section#contact > form > input.button:hover {
 }
 
 body > div.gradient-trim {
-  background: linear-gradient(270deg, var(--footer-colour), var(--accent-colour) 100%);
+  background: linear-gradient(270deg, var(--footer-colour) 0%, var(--accent-colour) 100%);
 }
 
 footer {
