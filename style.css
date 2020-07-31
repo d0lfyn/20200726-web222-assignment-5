@@ -19,7 +19,7 @@
   --sub-font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   --title-font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --button-transition: all 200ms ease-in;
-  --octagon-transition: all 400ms ease-in;
+  --octagon-transition: all 500ms ease-in;
   font-size: 12pt;
 }
 
@@ -118,7 +118,7 @@ nav > ul > li:last-child {
 
 nav > ul > li::before {
   position: absolute;
-  transform: translateX(-250%) translateY(-10%);
+  transform: translateX(-150%) translateY(-60%);
   content: ' ';
   width: 0;
   height: 0.75em;
@@ -127,7 +127,7 @@ nav > ul > li::before {
 
 nav > ul > li::after {
   position: absolute;
-  transform: translateX(150%) translateY(-10%);
+  transform: translateX(50%) translateY(40%);
   content: ' ';
   width: 0;
   height: 0.75em;
