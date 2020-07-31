@@ -328,57 +328,6 @@ section.blurb > section.description > a:hover {
   transition: var(--button-transition);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  section.blurb > section.description > a {
-    display: block;
-    margin: 0em;
-    padding: 2em;
-    color: transparent;
-    background-color: transparent;
-    text-decoration: none;
-  }
-
-  section.blurb > section.description > a::before {
-    position: absolute;
-    transform: translateX(100%) translateY(-25%);
-    color: var(--contrast-colour);
-    content: ' ';
-    width: 0;
-    height: 0.75em;
-    border: 0.75em solid transparent;
-    border-right: 0.75em solid var(--accent-2-colour);
-  }
-
-  section.blurb > section.description > a::after {
-    position: absolute;
-    transform: translateX(-200%) translateY(-25%);
-    content: ' ';
-    width: 0;
-    height: 0.75em;
-    border: 0.75em solid transparent;
-    border-left: 0.75em solid var(--accent-2-colour);
-  }
-
-  section.blurb > section.description > a:hover {
-    color: var(--main-colour);
-    background-color: transparent;
-    box-shadow: none;
-    transition: all 500ms ease-in 200ms;
-  }
-
-  section.blurb > section.description > a:hover::before {
-    transform: translateX(-150%) translateY(-25%);
-    border-right: 0.75em solid var(--accent-2-colour);
-    transition: var(--octagon-transition);
-  }
-
-  section.blurb > section.description > a:hover::after {
-    transform: translateX(50%) translateY(-25%);
-    border-left: 0.75em solid var(--accent-2-colour);
-    transition: var(--octagon-transition);
-  }
-}
-
 section.blurb > section.category > span::before {
   content: '#';
 }
