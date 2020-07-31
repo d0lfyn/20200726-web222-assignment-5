@@ -14,10 +14,10 @@
   --shadow-colour: rgba(0, 0, 0, 0.15);
   --min-width: 250px;
   --max-width: 1000px;
-  --plain-font: 'Roboto', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva,
-    Verdana, sans-serif;
-  --sub-font: 'Lato', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  --title-font: 'Nunito', Tahoma, Geneva, Verdana, sans-serif;
+  --plain-font: 'Roboto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  --sub-font: 'Lato', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  --title-font: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   --button-transition: all 200ms ease-in;
   --octagon-transition: all 500ms ease-in;
   font-size: 12pt;
