@@ -69,19 +69,110 @@
       </section>
       <section id="contact">
         <h2>Contact</h2>
-        <p>Inquiries: inquiries@example.com</p>
-        <form action="#" method="GET">
-          <h3>Subscribe!</h3>
+        <form action="https://httpbin.org/post" method="POST">
           <input
             type="text"
-            name="name"
+            name="contact-name"
             class="text-field"
             placeholder="Name"
-            pattern="[\w ]+"
+            pattern="[A-Za-z.\- ]+"
             required
           />
-          <input type="email" name="email" class="text-field" placeholder="E-mail" required />
-          <input type="submit" class="button" />
+          <input
+            type="email"
+            name="contact-email"
+            class="text-field"
+            placeholder="E-mail"
+            required
+          />
+          <input
+            type="text"
+            name="contact-address"
+            class="text-field"
+            placeholder="Address"
+            pattern="[A-Za-z0-9.- ]+"
+            required
+          />
+          <input
+            list="canadian-cities"
+            type="text"
+            name="contact-city"
+            id="contact-city"
+            class="text-field"
+            placeholder="City"
+            pattern="[A-Za-z.- ]+"
+            required
+          />
+          <datalist id="canadian-cities">
+            <option value="Calgary"> </option>
+            <option value="Halifax"> </option>
+            <option value="Montreal"> </option>
+            <option value="Toronto"> </option>
+            <option value="Vancouver"> </option>
+          </datalist>
+          <input
+            type="text"
+            name="contact-postal-code"
+            class="text-field"
+            placeholder="Postal code"
+            pattern="[A-Z][0-9][A-Z] ?[0-9][A-Z][0-9]"
+            required
+          />
+          <br />
+          <div>
+            <span>
+              <input
+                type="radio"
+                name="contact-type"
+                class="radio"
+                id="contact-question"
+                value="question"
+                checked
+              />
+              <label for="contact-question" class="label">Question</label>
+            </span>
+            <span>
+              <input
+                type="radio"
+                name="contact-type"
+                class="radio"
+                id="contact-comment"
+                value="comment"
+              />
+              <label for="contact-comment" class="label">Comment</label>
+            </span>
+            <span>
+              <input
+                type="radio"
+                name="contact-type"
+                class="radio"
+                id="contact-problem"
+                value="problem"
+              />
+              <label for="contact-problem" class="label">Order Problem</label>
+            </span>
+          </div>
+          <input
+            type="text"
+            name="contact-order"
+            id="contact-order"
+            class="hidden text-field"
+            pattern="\d+"
+            placeholder="Order number"
+          />
+          <br />
+          <textarea
+            name="contact-message"
+            id="contact-message"
+            cols="30"
+            rows="10"
+            placeholder="Message"
+            required
+          ></textarea>
+          <br />
+          <input type="hidden" name="contact-hidden" value="Daniel Chung" />
+          <input type="submit" class="button" value="Submit" />
+          <input type="reset" class="button" value="Clear" />
         </form>
       </section>
     </main>
@@ -115,6 +206,20 @@
           <a href="https://www.deviantart.com/0delphi"
             ><i class="fa fa-deviantart fa-lg"></i> <span>DeviantArt</span></a
           >
+        </div>
+        <div class="flex-column">
+          <h4>Subscribe</h4>
+          <form action="https://formspree.io/myynoljo" method="get">
+            <input
+              type="email"
+              class="text-field"
+              name="subscribe-email"
+              id="subscribe-email"
+              placeholder="E-mail"
+              required
+            />
+            <input type="submit" class="button" value="Submit" />
+          </form>
         </div>
       </div>
     </footer>

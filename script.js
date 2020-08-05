@@ -389,6 +389,19 @@ const refreshPage = () => {
   );
 };
 
+// show order number field if "Order Problem" is selected
+const determineIfOrderProblem = () => {
+  const contactOrderField = document.getElementById('contact-order');
+  const contactProblemRadio = document.getElementById('contact-problem');
+  if (contactProblemRadio.checked) {
+    contactOrderField.classList.remove('hidden');
+    contactOrderField.required = true;
+  } else {
+    contactOrderField.classList.add('hidden');
+    contactOrderField.required = false;
+  }
+};
+
 window.onload = () => {
   const sections = document.querySelectorAll('main > section');
   const musicSection = sections[0];
@@ -447,4 +460,8 @@ window.onload = () => {
   );
   aboutSection.classList.add('hidden');
   contactSection.classList.add('hidden');
+
+  determineIfOrderProblem();
+  for (const radio of document.getElementsByClassName('radio'))
+    radio.addEventListener('change', determineIfOrderProblem);
 };

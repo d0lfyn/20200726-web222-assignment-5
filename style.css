@@ -8,7 +8,7 @@
 :root {
   --accent-colour: #ffa9df;
   --accent-2-colour: #ff86d3;
-  --button-colour: rgba(0, 0, 0, 0.06);
+  --button-colour: rgba(240, 240, 240, 1);
   --contrast-colour: white;
   --footer-colour: rgba(40, 40, 40);
   --main-colour: black;
@@ -353,7 +353,8 @@ main > section#contact > p {
   max-width: 40em;
 }
 
-main > section#contact > form {
+/* main > section#contact > form, */
+form {
   margin-top: 1em;
   display: flex;
   flex-direction: column;
@@ -361,42 +362,69 @@ main > section#contact > form {
   box-shadow: 1px 1px 1px 0 var(--shadow-colour);
 }
 
-main > section#contact > form > h3 {
-  margin-top: 1em;
-  font-family: var(--sub-font);
-}
-
-main > section#contact > form > input {
+/* main > section#contact > form > input, */
+form > input {
   margin: 0.5em;
   padding: 0.5em 1em;
   border: none;
 }
 
-main > section#contact > form > input:focus {
+form > textarea {
+  margin: 0.5em;
+  padding: 0.5em 1em;
+  border: 1px solid var(--main-colour);
+}
+
+/* main > section#contact > form > input:focus, */
+form > input:focus,
+form > textarea:focus {
   outline: none;
 }
 
-main > section#contact > form > input.text-field {
+form > textarea:focus {
+  border: 1px solid var(--accent-2-colour);
+  transition: var(--button-transition);
+}
+
+/* main > section#contact > form > input.text-field, */
+form > input.text-field {
   border-bottom: 1px solid var(--main-colour);
   width: 90%;
 }
 
-main > section#contact > form > input.text-field:focus {
-  border-bottom: 1px solid var(--accent-colour);
+/* main > section#contact > form > input.text-field:focus, */
+form > input.text-field:focus {
+  border-bottom: 1px solid var(--accent-2-colour);
   transition: var(--button-transition);
 }
 
-main > section#contact > form > input.button {
+/* main > section#contact > form > input.button, */
+form > input.button {
   text-transform: uppercase;
   background-color: var(--button-colour);
   width: fit-content;
 }
 
-main > section#contact > form > input.button:focus {
+/* main > section#contact > form > input.button:focus, */
+form > input.button:focus {
   border: 1px solid var(--accent-colour);
 }
 
-main > section#contact > form > input.button:hover {
+form > div {
+  text-align: left;
+}
+
+form > div > span {
+  display: block;
+  white-space: nowrap;
+}
+
+form > div > span > .label {
+  font-family: var(--plain-font);
+}
+
+/* main > section#contact > form > input.button:hover, */
+form > input.button:hover {
   background-color: var(--accent-colour);
   box-shadow: 1px 1px 1px 0 var(--shadow-colour);
   transition: var(--button-transition);
